@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CineMatch — Movie Recommendation System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="filmstrip" aria-hidden="true"></div>
+
+<header class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow">B.Tech Mini Project &middot; AI / ML</p>
+    <h1 class="title">CineMatch</h1>
+    <p class="subtitle">A movie recommender built on three engines — content-based filtering, collaborative filtering, and matrix factorization.</p>
+  </div>
+</header>
+
+<main class="container">
+
+  <section class="picker-card">
+    <div class="mode-tabs" role="tablist">
+      <button class="tab active" data-mode="content" role="tab">Content&#8209;Based</button>
+      <button class="tab" data-mode="collaborative" role="tab">Collaborative</button>
+      <button class="tab" data-mode="svd" role="tab">Matrix Factorization</button>
+    </div>
+
+    <div class="mode-panel active" id="panel-content">
+      <label for="movie-select">Pick a movie you like</label>
+      <select id="movie-select"></select>
+      <p class="hint">Finds movies with similar genre profiles using TF‑IDF + cosine similarity.</p>
+      <button class="go-btn" id="btn-content">Find similar movies</button>
+    </div>
+
+    <div class="mode-panel" id="panel-collaborative">
+      <label for="user-select-cf">Pick a user profile</label>
+      <select id="user-select-cf"></select>
+      <p class="hint">Finds movies liked by users with similar taste (item‑based collaborative filtering).</p>
+      <button class="go-btn" id="btn-collaborative">Recommend for this user</button>
+    </div>
+
+    <div class="mode-panel" id="panel-svd">
+      <label for="user-select-svd">Pick a user profile</label>
+      <select id="user-select-svd"></select>
+      <p class="hint">Learns hidden "taste factors" for every user &amp; movie via Truncated SVD, then predicts ratings.</p>
+      <button class="go-btn" id="btn-svd">Recommend via SVD</button>
+    </div>
+  </section>
+
+  <section class="results-section">
+    <div class="results-header">
+      <h2 id="results-title">Recommendations</h2>
+      <span id="results-meta" class="results-meta"></span>
+    </div>
+    <div id="user-history" class="user-history"></div>
+    <div id="results-grid" class="results-grid">
+      <p class="placeholder">Choose a movie or user profile on the left, then hit the button to generate recommendations.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>CineMatch &middot; Content-Based Filtering, Collaborative Filtering &amp; Matrix Factorization &middot; Python + scikit-learn + Flask</p>
+</footer>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
